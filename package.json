@@ -1,23 +1,29 @@
 {
   "name": "disc-golf",
   "version": "0.1.0",
-  "main": "index.js",
   "repository": "git@github.com:markwedding/disc-golf.git",
   "author": "Mark Wedding <markwedding10@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "parcel index.html",
-    "build": "parcel build index.html"
-  },
-  "devDependencies": {
-    "@types/parcel-env": "^0.0.0",
-    "@types/react": "^16.9.38",
-    "@types/react-dom": "^16.9.8",
-    "parcel-bundler": "^1.12.4",
-    "typescript": "^3.9.5"
+    "start": "snowpack dev",
+    "build": "snowpack build",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "test": "jest"
   },
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@snowpack/app-scripts-react": "^1.2.0",
+    "@testing-library/jest-dom": "^5.10.1",
+    "@testing-library/react": "^10.4.0",
+    "@types/react": "^16.9.38",
+    "@types/react-dom": "^16.9.8",
+    "jest": "^26.1.0",
+    "prettier": "^2.0.5",
+    "snowpack": "^2.5.4",
+    "typescript": "^3.9.5"
   }
 }

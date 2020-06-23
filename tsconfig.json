@@ -1,13 +1,18 @@
 {
+  "include": ["src", "types"],
+  "exclude": ["node_modules"],
+  "extends": "@snowpack/app-scripts-react/tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "./src",
+    // You can't currently define paths in your 'extends' config,
+    // so we have to set 'baseUrl' & 'paths' here.
+    // Don't change these unless you know what you're doing.
+    // See: https://github.com/microsoft/TypeScript/issues/25430
+    "baseUrl": "./",
     "paths": {
-      "~/*": ["./*"]
+      "*": ["web_modules/.types/*"]
     },
-    "typeRoots": ["node_modules/@types"],
-    "jsx": "react",
-    "lib": ["ESNext", "DOM"],
-    "esModuleInterop": true
-  },
-  "include": ["src/**/*"]
+    // Feel free to add/edit new config options below:
+    // ...
+    "module": "esnext"
+  }
 }
