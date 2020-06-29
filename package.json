@@ -12,6 +12,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@types/papaparse": "^5.0.4",
+    "papaparse": "^5.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
