@@ -15,7 +15,8 @@ export interface Round {
   holes: Hole[]
 }
 
-export type ParsedRecord = {
+// represents a record parsed from the CSV file by papaparse
+export type Record = {
   courseName: string
   date: string
   layoutName: string

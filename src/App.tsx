@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Papa from 'papaparse'
 import { camelCase } from 'lodash-es'
-import type { ParsedRecord } from './types'
+import type { Record } from './types'
 import processRecords from './processRecords'
 
 const App = () => {
   const [data, setData] = useState<any>(null)
 
   useEffect(() => {
-    Papa.parse<ParsedRecord>('./scorecards.csv', {
+    Papa.parse<Record>('./scorecards.csv', {
       download: true,
       header: true,
       dynamicTyping: true,

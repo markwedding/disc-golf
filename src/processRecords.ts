@@ -1,6 +1,6 @@
-import type { Round, ParsedRecord } from './types'
+import type { Round, Record } from './types'
 
-const getHoles = (record: ParsedRecord) =>
+const getHoleValues = (record: Record) =>
   Object.entries(record)
     .reduce<number[]>((acc, [key, value]) => {
       if (key.includes('hole')) return [...acc, value as number]
@@ -9,18 +9,17 @@ const getHoles = (record: ParsedRecord) =>
     }, [])
     .filter(Boolean)
 
-export default function processRecords(records: ParsedRecord[]): Round[] {
-  // combine par and actual records
+export default function processRecords(records: Record[]): Round[] {
   const parRecords = records.filter((_, i) => i % 2 === 0)
-  const actualRecords = records.filter((_, i) => i % 2 === 1)
+  const scoreRecords = records.filter((_, i) => i % 2 === 1)
 
   return parRecords.map((parRecord, i) => {
-    const actualRecord = actualRecords[i]
+    const scoreRecord = scoreRecords[i]
     const { courseName: course, total: par, layoutName: layout } = parRecord
-    const { total: score, toPar, playerName: player, date } = actualRecord
+    const { total: score, toPar, playerName: player, date } = scoreRecord
 
-    const pars = getHoles(parRecord)
-    const actuals = getHoles(actualRecord)
+    const pars = getHoleValues(parRecord)
+    const scores = getHoleValues(scoreRecord)
 
     return {
       par,
@@ -31,12 +30,12 @@ export default function processRecords(records: ParsedRecord[]): Round[] {
       toPar: toPar as number,
       date: new Date(date),
       holes: pars.map((par, i) => {
-        const actual = actuals[i]
+        const score = scores[i]
 
         return {
           par,
-          score: actual,
-          toPar: actual - par,
+          score,
+          toPar: score - par,
         }
       }),
     }
