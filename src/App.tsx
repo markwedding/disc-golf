@@ -5,7 +5,7 @@ import type { Record } from './types'
 import processRecords from './processRecords'
 
 const App = () => {
-  const [data, setData] = useState<any>(null)
+  const [players, setPlayers] = useState<string[]>([])
 
   useEffect(() => {
     Papa.parse<Record>('./scorecards.csv', {
@@ -18,14 +18,16 @@ const App = () => {
 
         return camelCase(header)
       },
-      complete: (results) => {
-        console.log(processRecords(results.data))
-        setData(results)
+      complete: ({ data: records }) => {
+        const rounds = processRecords(records)
+        console.log(rounds)
+
+        setPlayers([...new Set(rounds.map(({ player }) => player))])
       },
     })
   }, [])
 
-  return <p>App</p>
+  return players.map((player) => <p>{player}</p>)
 }
 
 export default App
