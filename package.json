@@ -12,7 +12,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "@types/lodash-es": "^4.17.3",
     "@types/papaparse": "^5.0.4",
+    "lodash-es": "^4.17.15",
     "papaparse": "^5.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
