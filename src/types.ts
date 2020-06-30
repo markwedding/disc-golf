@@ -1,10 +1,6 @@
-export interface Player {
-  name: string
-}
-
 export interface Hole {
   par: number
-  score: number | null
+  score: number
   toPar: number
 }
 
@@ -14,7 +10,18 @@ export interface Round {
   toPar: number
   course: string
   layout: string
-  player: Player
+  player: string
   date: Date
   holes: Hole[]
+}
+
+export type ParsedRecord = {
+  courseName: string
+  date: string
+  layoutName: string
+  playerName: string
+  toPar: number | null
+  total: number
+} & {
+  [key: string]: number
 }

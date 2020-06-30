@@ -30,8 +30,3 @@ declare module '*.webp' {
   const ref: string
   export default ref
 }
-
-declare module '*.csv' {
-  const ref: string
-  export default ref
-}
