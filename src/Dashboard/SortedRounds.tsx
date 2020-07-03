@@ -23,7 +23,7 @@ const getBadgeColor = (toPar: number): string => {
   return 'gray'
 }
 
-const BestRounds: FC = () => {
+const SortedRounds: FC = () => {
   const [sort, setSort] = useRecoilState(roundSortAtom)
   const rounds = useRecoilValue(sortedRoundsSelector)
   const { colorMode } = useColorMode()
@@ -75,4 +75,4 @@ const BestRounds: FC = () => {
   )
 }
 
-export default BestRounds
+export default SortedRounds

@@ -1,7 +1,7 @@
 import recoil from 'recoil'
 import { fetchRounds } from '../data'
 import type { PlayerStats } from '../types'
-import { mean, min, sortBy } from 'lodash-es'
+import { mean, min } from 'lodash-es'
 import { playerAtom, roundSortAtom } from './atoms'
 
 const { selector } = recoil
