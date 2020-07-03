@@ -21,7 +21,8 @@
     "lodash-es": "^4.17.15",
     "papaparse": "^5.2.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "recoil": "^0.0.10"
   },
   "devDependencies": {
     "@snowpack/app-scripts-react": "^1.2.0",
