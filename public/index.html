@@ -4,12 +4,19 @@
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Web site created using create-snowpack-app" />
+    <meta
+      name="description"
+      content="Web site created using create-snowpack-app"
+    />
     <title>Snowpack App</title>
   </head>
   <body>
     <div id="root"></div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+      // https://github.com/webpack/webpack/issues/10035#issuecomment-603231120
+      global = globalThis
+    </script>
     <script type="module" src="/_dist_/index.js"></script>
     <!--
       This HTML file is a template.
