@@ -27,7 +27,13 @@ const App = () => {
     })
   }, [])
 
-  return players.map((player) => <p>{player}</p>)
+  return (
+    <>
+      {players.map((player) => (
+        <p>{player}</p>
+      ))}
+    </>
+  )
 }
 
 export default App
