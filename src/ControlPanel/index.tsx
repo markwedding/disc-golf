@@ -2,14 +2,16 @@ import React from 'react'
 import type { FC } from 'react'
 import PlayerSelect from './PlayerSelect'
 import ThemeToggle from './ThemeToggle'
+import { Stack, Box } from '@chakra-ui/core'
 
 const ControlPanel: FC = () => {
   return (
-    <>
-      <p>Control Panel</p>
-      <PlayerSelect />
+    <Stack isInline spacing={8} alignItems="flex-end">
+      <Box flex={1}>
+        <PlayerSelect />
+      </Box>
       <ThemeToggle />
-    </>
+    </Stack>
   )
 }
 

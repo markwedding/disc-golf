@@ -1,11 +1,16 @@
 import React, { Suspense } from 'react'
 import recoil from 'recoil'
-import { ThemeProvider, ColorModeProvider, CSSReset } from '@chakra-ui/core'
+import {
+  ThemeProvider,
+  ColorModeProvider,
+  CSSReset,
+  Divider,
+  Box,
+} from '@chakra-ui/core'
 import customTheme from './theme'
 import ControlPanel from './ControlPanel'
 import PlayerStats from './PlayerStats'
 
-// snowpack does not support CJS named exports
 const { RecoilRoot } = recoil
 
 const App = () => (
@@ -14,8 +19,12 @@ const App = () => (
       <ThemeProvider theme={customTheme}>
         <ColorModeProvider>
           <CSSReset />
-          <ControlPanel />
-          <PlayerStats />
+          <Box m={5}>
+            <ControlPanel />
+            <Divider my={5} />
+            <PlayerStats />
+            <Divider my={5} />
+          </Box>
         </ColorModeProvider>
       </ThemeProvider>
     </Suspense>
