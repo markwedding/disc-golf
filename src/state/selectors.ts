@@ -2,7 +2,7 @@ import recoil from 'recoil'
 import { fetchRounds } from '../data'
 import type { PlayerStats } from '../types'
 import { mean, min, sortBy } from 'lodash-es'
-import { playerAtom } from './atoms'
+import { playerAtom, roundSortAtom } from './atoms'
 
 const { selector } = recoil
 
@@ -44,14 +44,22 @@ const playerStatsSelector = selector<PlayerStats>({
   },
 })
 
-const bestRoundsSelector = selector({
-  key: 'bestRounds',
+const sortedRoundsSelector = selector({
+  key: 'sortedRounds',
   get: ({ get }) => {
     const rounds = get(roundsSelector)
-    const sortedRounds = sortBy(rounds, ['toPar'])
+    const roundSort = get(roundSortAtom)
+    // copying since .sort mutates the array 😑
+    const roundsCopy = [...rounds]
+
+    roundsCopy.sort((a, b) => {
+      if (roundSort === 'asc') return a.toPar - b.toPar
+
+      return b.toPar - a.toPar
+    })
 
     // return top 10 rounds
-    return sortedRounds.slice(0, 10)
+    return roundsCopy.slice(0, 10)
   },
 })
 
@@ -60,5 +68,5 @@ export {
   roundsSelector,
   playersSelector,
   playerStatsSelector,
-  bestRoundsSelector,
+  sortedRoundsSelector,
 }

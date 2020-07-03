@@ -7,4 +7,9 @@ const playerAtom = atom<string | undefined>({
   default: undefined,
 })
 
-export { playerAtom }
+const roundSortAtom = atom<'asc' | 'desc'>({
+  key: 'roundSort',
+  default: 'asc',
+})
+
+export { playerAtom, roundSortAtom }
