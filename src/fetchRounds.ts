@@ -16,6 +16,9 @@ const fetchRounds = () =>
         return camelCase(header)
       },
       complete: ({ data: records }) => {
+        // TODO: remove
+        console.log(processRecords(records))
+
         resolve(processRecords(records))
       },
     })

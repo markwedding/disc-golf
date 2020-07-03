@@ -26,3 +26,9 @@ export type Record = {
 } & {
   [key: string]: number
 }
+
+export interface PlayerStats {
+  rounds: number
+  average: number
+  best: number
+}

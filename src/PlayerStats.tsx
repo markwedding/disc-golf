@@ -1,23 +1,40 @@
-import React from 'react'
+import React, { useState, ChangeEvent, useEffect } from 'react'
 import type { FC } from 'react'
 import recoil from 'recoil'
-import { Select } from '@chakra-ui/core'
-import { roundsQuery } from './selectors'
+import { Select, FormControl, FormLabel } from '@chakra-ui/core'
+import { playersSelector, playerStatsSelector, playerAtom } from './selectors'
 
-const { useRecoilValue } = recoil
+const { useRecoilState, useRecoilValue } = recoil
 
 const PlayerStats: FC = () => {
-  const rounds = useRecoilValue(roundsQuery)
+  const [player, setPlayer] = useRecoilState(playerAtom)
+  const players = useRecoilValue(playersSelector)
+  const { rounds, average, best } = useRecoilValue(playerStatsSelector)
 
-  console.log(rounds)
+  useEffect(() => {
+    setPlayer(players[0])
+  }, [])
+
+  const handleChange = ({
+    target: { value },
+  }: ChangeEvent<HTMLSelectElement>) => {
+    setPlayer(value)
+  }
+
   return (
     <>
-      <p>Player stats</p>
-      <Select>
-        {[].map((player) => (
-          <option>{player}</option>
-        ))}
-      </Select>
+      <h1>Player stats</h1>
+      <FormControl>
+        <FormLabel htmlFor="player">Player</FormLabel>
+        <Select id="player" value={player} onChange={handleChange}>
+          {players.map((player) => (
+            <option>{player}</option>
+          ))}
+        </Select>
+      </FormControl>
+      <p>{rounds} rounds played</p>
+      <p>Average: {average.toFixed(2)}</p>
+      <p>Best: {best}</p>
     </>
   )
 }
