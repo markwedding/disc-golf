@@ -1,7 +1,7 @@
 import Papa from 'papaparse'
 import { camelCase } from 'lodash-es'
 import processRecords from './processRecords'
-import type { Record, Round } from './types'
+import type { Record, Round } from '../types'
 
 const fetchRounds = () =>
   new Promise<Round[]>((resolve) => {

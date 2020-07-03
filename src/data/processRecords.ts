@@ -1,4 +1,4 @@
-import type { Round, Record } from './types'
+import type { Round, Record } from '../types'
 
 const getHoleValues = (record: Record) =>
   Object.entries(record)

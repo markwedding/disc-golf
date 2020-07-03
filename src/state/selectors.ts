@@ -1,14 +1,10 @@
 import recoil from 'recoil'
-import fetchRounds from './fetchRounds'
-import type { PlayerStats } from './types'
+import { fetchRounds } from '../data'
+import type { PlayerStats } from '../types'
 import { mean, min } from 'lodash-es'
+import { playerAtom } from './atoms'
 
-const { atom, selector } = recoil
-
-const playerAtom = atom<string | undefined>({
-  key: 'player',
-  default: undefined,
-})
+const { selector } = recoil
 
 const roundsQuery = selector({
   key: 'rounds',
@@ -41,4 +37,4 @@ const playerStatsSelector = selector<PlayerStats>({
   },
 })
 
-export { playerAtom, roundsQuery, playersSelector, playerStatsSelector }
+export { roundsQuery, playersSelector, playerStatsSelector }
