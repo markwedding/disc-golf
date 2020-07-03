@@ -1,13 +1,13 @@
 import recoil from 'recoil'
 import { fetchRounds } from '../data'
 import type { PlayerStats } from '../types'
-import { mean, min } from 'lodash-es'
+import { mean, min, sortBy } from 'lodash-es'
 import { playerAtom } from './atoms'
 
 const { selector } = recoil
 
 const roundsQuery = selector({
-  key: 'rounds',
+  key: 'roundsQuery',
   get: async () => fetchRounds(),
 })
 
@@ -20,21 +20,45 @@ const playersSelector = selector({
   },
 })
 
+const roundsSelector = selector({
+  key: 'rounds',
+  get: ({ get }) => {
+    const allRounds = get(roundsQuery)
+    const player = get(playerAtom)
+
+    return allRounds.filter((round) => round.player === player)
+  },
+})
+
 const playerStatsSelector = selector<PlayerStats>({
   key: 'playerStats',
   get: ({ get }) => {
-    const rounds = get(roundsQuery)
-    const player = get(playerAtom)
-
-    const roundsByPlayer = rounds.filter((round) => round.player === player)
-    const scores = roundsByPlayer.map(({ toPar }) => toPar)
+    const rounds = get(roundsSelector)
+    const scores = rounds.map(({ toPar }) => toPar)
 
     return {
-      rounds: roundsByPlayer.length,
+      rounds: rounds.length,
       average: mean(scores),
       best: min(scores) || 0,
     }
   },
 })
 
-export { roundsQuery, playersSelector, playerStatsSelector }
+const bestRoundsSelector = selector({
+  key: 'bestRounds',
+  get: ({ get }) => {
+    const rounds = get(roundsSelector)
+    const sortedRounds = sortBy(rounds, ['toPar'])
+
+    // return top 10 rounds
+    return sortedRounds.slice(0, 10)
+  },
+})
+
+export {
+  roundsQuery,
+  roundsSelector,
+  playersSelector,
+  playerStatsSelector,
+  bestRoundsSelector,
+}

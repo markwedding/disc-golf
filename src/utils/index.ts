@@ -10,4 +10,12 @@ const formatAverageToPar = (average: number) => {
   return formatToPar(truncatedAverage)
 }
 
-export { formatToPar, formatAverageToPar }
+const formatDate = (date: Date) =>
+  date.toLocaleDateString(undefined, {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })
+
+export { formatToPar, formatAverageToPar, formatDate }
