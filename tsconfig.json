@@ -9,7 +9,8 @@
     // See: https://github.com/microsoft/TypeScript/issues/25430
     "baseUrl": "./",
     "paths": {
-      "*": ["web_modules/.types/*"]
+      "*": ["web_modules/.types/*"],
+      "src/*": ["src/*"]
     },
     // Feel free to add/edit new config options below:
     // ...
