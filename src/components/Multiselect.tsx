@@ -1,8 +1,8 @@
 import React, { ComponentProps } from 'react'
 import type { FC } from 'react'
-import ReactSelect from 'react-select'
-import type { PropsOf } from 'emotion-theming/types/helper'
-import { Icon, Box, Flex } from '@chakra-ui/core'
+import ReactSelect, { components } from 'react-select'
+import { Icon, Box, Flex, useColorMode } from '@chakra-ui/core'
+import customTheme from 'src/theme'
 
 /**
  * Multiselect wraps the react-select component and adds custom components and
@@ -17,7 +17,21 @@ import { Icon, Box, Flex } from '@chakra-ui/core'
 
 // }
 
+// const ClearIndicator: FC<ComponentProps<typeof components.ClearIndicator>> = ({
+//   innerProps,
+// }) => (
+//   <Flex {...innerProps} mr={2}>
+//     <Icon name="small-close" />
+//   </Flex>
+// )
+
 const Multiselect: FC<ComponentProps<typeof ReactSelect>> = (props) => {
+  const { colorMode } = useColorMode()
+  const {
+    colors: { gray, whiteAlpha },
+  } = customTheme
+  const primaryColor = colorMode === 'light' ? gray[800] : whiteAlpha[800]
+
   return (
     <ReactSelect
       {...props}
@@ -26,6 +40,13 @@ const Multiselect: FC<ComponentProps<typeof ReactSelect>> = (props) => {
           <Flex {...innerProps} mr={2}>
             <Icon name="small-close" />
           </Flex>
+        ),
+        DropdownIndicator: (props) => (
+          <components.DropdownIndicator {...props}>
+            <Box color={primaryColor}>
+              <Icon name="chevron-down" size="1.25em" />
+            </Box>
+          </components.DropdownIndicator>
         ),
       }}
     />
