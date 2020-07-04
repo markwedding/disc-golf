@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react'
 import type { FC } from 'react'
 import recoil from 'recoil'
-import ReactSelect from 'react-select'
 import { coursesSelector, selectedCoursesAtom } from 'src/state'
 import type { Courses } from 'src/types'
 import { FormControl, FormLabel } from '@chakra-ui/core'
+import Multiselect from 'src/components/Multiselect'
 
 const { useRecoilValue, useRecoilState } = recoil
 
@@ -35,7 +35,7 @@ const CourseSelect: FC = () => {
   return (
     <FormControl>
       <FormLabel htmlFor="courses">Course</FormLabel>
-      <ReactSelect
+      <Multiselect
         id="courses"
         options={options}
         isMulti
@@ -44,7 +44,7 @@ const CourseSelect: FC = () => {
           // TODO: clean up assertions
           const options = value || ([] as any)
 
-          setSelectedCourses((options || []).map((option: any) => option.value))
+          setSelectedCourses(options.map((option: any) => option.value))
         }}
       />
     </FormControl>
