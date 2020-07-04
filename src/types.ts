@@ -13,6 +13,7 @@ export interface Round {
   player: string
   date: Date
   holes: Hole[]
+  id: string
 }
 
 // represents a record parsed from the CSV file by papaparse
@@ -31,4 +32,8 @@ export interface PlayerStats {
   rounds: number
   average: number
   best: number
+}
+
+export interface Courses {
+  [key: string]: string[]
 }

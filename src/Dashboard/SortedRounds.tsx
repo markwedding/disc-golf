@@ -36,6 +36,10 @@ const SortedRounds: FC = () => {
   const headingText = sort === 'asc' ? 'Best Rounds 🔥' : 'Worst Rounds 💩'
   const icon = sort === 'asc' ? FaCaretUp : FaCaretDown
 
+  if (rounds.length < 2 && sort === 'desc') {
+    setSort('asc')
+  }
+
   return (
     <Box shadow="md" borderWidth="1px" p={3} rounded="lg" maxWidth="400px">
       <Flex alignItems="center" justifyContent="space-between">
@@ -46,16 +50,18 @@ const SortedRounds: FC = () => {
         >
           {headingText}
         </Heading>
-        <IconButton
-          variant="outline"
-          size="sm"
-          aria-label="Sort"
-          icon={icon}
-          onClick={handleClick}
-        />
+        {rounds.length >= 2 && (
+          <IconButton
+            variant="outline"
+            size="sm"
+            aria-label="Sort"
+            icon={icon}
+            onClick={handleClick}
+          />
+        )}
       </Flex>
-      {rounds.map(({ toPar, course, date }) => (
-        <Stack isInline alignItems="baseline" spacing={3}>
+      {rounds.map(({ toPar, course, date, id }) => (
+        <Stack isInline alignItems="baseline" spacing={3} key={id}>
           <Badge rounded="full" px="2" variantColor={getBadgeColor(toPar)}>
             {formatToPar(toPar)}
           </Badge>

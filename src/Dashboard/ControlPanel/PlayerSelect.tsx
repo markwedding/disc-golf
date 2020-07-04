@@ -25,7 +25,7 @@ const PlayerSelect: FC = () => {
       <FormLabel htmlFor="player">Player</FormLabel>
       <Select id="player" value={player} onChange={handleChange}>
         {players.map((player) => (
-          <option>{player}</option>
+          <option key={player}>{player}</option>
         ))}
       </Select>
     </FormControl>

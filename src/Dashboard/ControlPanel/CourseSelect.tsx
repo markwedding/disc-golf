@@ -1,0 +1,54 @@
+import React, { useMemo } from 'react'
+import type { FC } from 'react'
+import recoil from 'recoil'
+import ReactSelect from 'react-select'
+import { coursesSelector, selectedCoursesAtom } from 'src/state'
+import type { Courses } from 'src/types'
+import { FormControl, FormLabel } from '@chakra-ui/core'
+
+const { useRecoilValue, useRecoilState } = recoil
+
+// TODO: make this more readible
+const generateOptions = (courses: Courses) =>
+  Object.entries(courses)
+    .reduce<[string, string][]>(
+      (arr, [course, layouts]) => [
+        ...arr,
+        ...layouts.map((layout): [string, string] => [course, layout]),
+      ],
+      [],
+    )
+    .map((tuple) => {
+      const [course, layout] = tuple
+
+      return {
+        label: `${course}: ${layout}`,
+        value: tuple,
+      }
+    })
+
+const CourseSelect: FC = () => {
+  const courses = useRecoilValue(coursesSelector)
+  const [, setSelectedCourses] = useRecoilState(selectedCoursesAtom)
+  const options = useMemo(() => generateOptions(courses), [courses])
+
+  return (
+    <FormControl>
+      <FormLabel htmlFor="courses">Course</FormLabel>
+      <ReactSelect
+        id="courses"
+        options={options}
+        isMulti
+        hideSelectedOptions
+        onChange={(value) => {
+          // TODO: clean up assertions
+          const options = value || ([] as any)
+
+          setSelectedCourses((options || []).map((option: any) => option.value))
+        }}
+      />
+    </FormControl>
+  )
+}
+
+export default CourseSelect

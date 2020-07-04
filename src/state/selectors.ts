@@ -1,8 +1,8 @@
 import recoil from 'recoil'
 import { fetchRounds } from '../data'
-import type { PlayerStats } from '../types'
-import { mean, min } from 'lodash-es'
-import { playerAtom, roundSortAtom } from './atoms'
+import type { PlayerStats, Courses } from '../types'
+import { mean, min, sortBy } from 'lodash-es'
+import { playerAtom, roundSortAtom, selectedCoursesAtom } from './atoms'
 
 const { selector } = recoil
 
@@ -30,10 +30,28 @@ const roundsSelector = selector({
   },
 })
 
+const filteredRoundsSelector = selector({
+  key: 'filteredRounds',
+  get: ({ get }) => {
+    const rounds = get(roundsSelector)
+    const selectedCourses = get(selectedCoursesAtom)
+
+    if (!selectedCourses.length) return rounds
+
+    // TODO: inefficient filtering
+    return rounds.filter((round) =>
+      selectedCourses.some(
+        ([course, layout]) =>
+          round.course === course && round.layout === layout,
+      ),
+    )
+  },
+})
+
 const playerStatsSelector = selector<PlayerStats>({
   key: 'playerStats',
   get: ({ get }) => {
-    const rounds = get(roundsSelector)
+    const rounds = get(filteredRoundsSelector)
     const scores = rounds.map(({ toPar }) => toPar)
 
     return {
@@ -47,7 +65,7 @@ const playerStatsSelector = selector<PlayerStats>({
 const sortedRoundsSelector = selector({
   key: 'sortedRounds',
   get: ({ get }) => {
-    const rounds = get(roundsSelector)
+    const rounds = get(filteredRoundsSelector)
     const roundSort = get(roundSortAtom)
     // copying since .sort mutates the array 😑
     const roundsCopy = [...rounds]
@@ -63,10 +81,40 @@ const sortedRoundsSelector = selector({
   },
 })
 
+const coursesSelector = selector<Courses>({
+  key: 'courses',
+  get: ({ get }) => {
+    const rounds = get(roundsSelector)
+
+    const courses = rounds.reduce<{ [key: string]: Set<string> }>(
+      (obj, { course, layout }) => {
+        if (!(course in obj)) {
+          obj[course] = new Set()
+        }
+
+        obj[course].add(layout)
+
+        return obj
+      },
+      {},
+    )
+
+    // sort entries by course
+    const entries = sortBy(Object.entries(courses), ([course]) => course)
+
+    // convert Sets into sorted arrays
+    return entries.reduce(
+      (obj, [course, layouts]) => ({ ...obj, [course]: [...layouts].sort() }),
+      {},
+    )
+  },
+})
+
 export {
   roundsQuery,
   roundsSelector,
   playersSelector,
   playerStatsSelector,
   sortedRoundsSelector,
+  coursesSelector,
 }

@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid'
 import type { Round, Record } from '../types'
 
 const getHoleValues = (record: Record) =>
@@ -27,6 +28,7 @@ export default function processRecords(records: Record[]): Round[] {
       course,
       layout,
       player,
+      id: uuidv4(),
       toPar: toPar as number,
       date: new Date(date),
       holes: pars.map((par, i) => {
