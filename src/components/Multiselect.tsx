@@ -1,7 +1,14 @@
 import React, { ComponentProps } from 'react'
 import type { FC } from 'react'
 import ReactSelect, { components } from 'react-select'
-import { Icon, Flex, useColorMode } from '@chakra-ui/core'
+import {
+  Icon,
+  Flex,
+  useColorMode,
+  Tag,
+  TagLabel,
+  TagCloseButton,
+} from '@chakra-ui/core'
 import customTheme from 'src/theme'
 
 /**
@@ -38,7 +45,7 @@ const Multiselect: FC<ComponentProps<typeof ReactSelect>> = (props) => {
       styles={{
         control: (provided, state) => ({
           ...provided,
-          height: '2.5rem',
+          minHeight: '2.5rem',
           borderColor: colorMode === 'light' ? gray[200] : whiteAlpha[50],
           paddingLeft: 'calc(1rem - 2px)',
           backgroundColor: colorMode === 'light' ? white : whiteAlpha[100],
@@ -50,6 +57,9 @@ const Multiselect: FC<ComponentProps<typeof ReactSelect>> = (props) => {
           ...provided,
           paddingLeft: 0,
         }),
+        multiValue: () => ({ display: 'flex', alignItems: 'center' }),
+        multiValueLabel: () => ({}),
+        multiValueRemove: () => ({}),
       }}
       components={{
         ClearIndicator: ({ innerProps }) => (
@@ -63,6 +73,28 @@ const Multiselect: FC<ComponentProps<typeof ReactSelect>> = (props) => {
               <Icon name="chevron-down" size="1.25em" />
             </Flex>
           </components.DropdownIndicator>
+        ),
+        MultiValueContainer: (props) => (
+          <Tag
+            size="sm"
+            rounded="full"
+            variant="solid"
+            variantColor="cyan"
+            mx="1px"
+            my="2px"
+          >
+            <components.MultiValueContainer {...props} />
+          </Tag>
+        ),
+        MultiValueLabel: (props) => (
+          <TagLabel>
+            <components.MultiValueLabel {...props} />
+          </TagLabel>
+        ),
+        MultiValueRemove: (props) => (
+          <components.MultiValueRemove {...props}>
+            <TagCloseButton />
+          </components.MultiValueRemove>
         ),
       }}
     />
