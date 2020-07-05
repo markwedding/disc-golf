@@ -110,6 +110,15 @@ const coursesSelector = selector<Courses>({
   },
 })
 
+const birdieRunsSelector = selector({
+  key: 'birdieRuns',
+  get: ({ get }) => {
+    const rounds = get(filteredRoundsSelector)
+
+    return []
+  },
+})
+
 export {
   roundsQuery,
   roundsSelector,
@@ -117,4 +126,5 @@ export {
   playerStatsSelector,
   sortedRoundsSelector,
   coursesSelector,
+  birdieRunsSelector,
 }

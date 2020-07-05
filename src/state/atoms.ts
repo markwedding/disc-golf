@@ -12,6 +12,7 @@ const selectedCoursesAtom = atom<[string, string][]>({
   default: [],
 })
 
+// TODO: move this to SortedRound component (and adjust selector as well)
 const roundSortAtom = atom<'asc' | 'desc'>({
   key: 'roundSort',
   default: 'asc',

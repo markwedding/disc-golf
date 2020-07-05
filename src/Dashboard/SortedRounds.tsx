@@ -41,7 +41,7 @@ const SortedRounds: FC = () => {
   }
 
   return (
-    <Box shadow="md" borderWidth="1px" p={3} rounded="lg" maxWidth="400px">
+    <Box shadow="md" borderWidth="1px" p={3} rounded="lg">
       <Flex alignItems="center" justifyContent="space-between">
         <Heading
           size="sm"

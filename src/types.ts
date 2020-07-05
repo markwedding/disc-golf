@@ -37,3 +37,10 @@ export interface PlayerStats {
 export interface Courses {
   [key: string]: string[]
 }
+
+export interface BirdieRun {
+  round: Round
+  start: number
+  end: number
+  run: boolean[]
+}
