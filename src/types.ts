@@ -42,5 +42,10 @@ export interface BirdieRun {
   round: Round
   start: number
   end: number
-  run: boolean[]
+  run: number[]
+}
+
+export interface Streak {
+  birdies: number
+  misses: number
 }

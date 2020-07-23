@@ -9,8 +9,6 @@ const { useRecoilValue } = recoil
 const BirdieRuns: FC = () => {
   const birdieRuns = useRecoilValue(birdieRunsSelector)
 
-  console.log(birdieRuns)
-
   return (
     <Box>
       <p>Birdie Runs</p>

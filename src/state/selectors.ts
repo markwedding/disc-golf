@@ -3,6 +3,7 @@ import { fetchRounds } from '../data'
 import type { PlayerStats, Courses } from '../types'
 import { mean, min, sortBy } from 'lodash-es'
 import { playerAtom, roundSortAtom, selectedCoursesAtom } from './atoms'
+import getBirdieRuns from 'src/utils/getBirdieRuns'
 
 const { selector } = recoil
 
@@ -114,6 +115,8 @@ const birdieRunsSelector = selector({
   key: 'birdieRuns',
   get: ({ get }) => {
     const rounds = get(filteredRoundsSelector)
+
+    if (rounds.length) return getBirdieRuns(rounds[1])
 
     return []
   },
