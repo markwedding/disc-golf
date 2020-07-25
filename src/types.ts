@@ -40,6 +40,8 @@ export interface Courses {
 
 export interface BirdieRun {
   round: Round
+  birdies: number
+  holes: number
   start: number
   end: number
   run: number[]
@@ -49,3 +51,5 @@ export interface Streak {
   birdies: number
   misses: number
 }
+
+export type PotentialRun = Omit<BirdieRun, 'round' | 'run'>

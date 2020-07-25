@@ -1,14 +1,15 @@
-const isBirdieRun = (scores: boolean[]) => {
-  const misses = scores.filter((isBirdie) => !isBirdie).length
-  const total = scores.length
+import type { PotentialRun } from 'src/types'
 
-  if (total <= 1) return false
+const isBirdieRun = ({ birdies, holes }: PotentialRun) => {
+  const misses = holes - birdies
 
-  if (total === 2) return misses === 0
+  if (holes <= 1) return false
 
-  if (total <= 4) return misses <= 1
+  if (holes === 2) return misses === 0
 
-  if (total <= 9) return misses <= 2
+  if (holes <= 4) return misses <= 1
+
+  if (holes <= 9) return misses <= 2
 
   return misses <= 3
 }
