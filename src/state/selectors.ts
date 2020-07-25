@@ -116,7 +116,14 @@ const birdieRunsSelector = selector({
   get: ({ get }) => {
     const rounds = get(filteredRoundsSelector)
 
-    if (rounds.length) return getBirdieRuns(rounds[9])
+    if (rounds.length) {
+      // TODO: remove
+      const birdieRuns = getBirdieRuns(rounds[9])
+
+      console.log('BIRDIE RUNS: ', birdieRuns)
+
+      return birdieRuns
+    }
 
     return []
   },

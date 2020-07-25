@@ -1,6 +1,10 @@
 import type { Run } from 'src/types'
 import isRunBetter from './isRunBetter'
 
+/**
+ * Determines if a new run should be added to the current output of birdie runs.
+ * Returns the new output.
+ */
 const maybeAddRun = (newRun: Run, [...output]: Run[]) => {
   let notCompared = true
 

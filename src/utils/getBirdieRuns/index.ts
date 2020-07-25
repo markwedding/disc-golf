@@ -109,20 +109,14 @@ const getBirdieRuns = (round: Round): BirdieRun[] => {
 
   /**
    * Map outputs to birdie runs and return
-   *
-   * TODO: remove console log statement and const declaration
    */
-  const birdieRuns: BirdieRun[] = outputs.map(({ start, end, ...rest }) => ({
+  return outputs.map(({ start, end, ...rest }) => ({
     round,
     start,
     end,
     ...rest,
     run: scores.slice(start - 1, end).map(({ birdie }) => birdie),
   }))
-
-  console.log('birdieRuns: ', birdieRuns)
-
-  return birdieRuns
 }
 
 export default getBirdieRuns
