@@ -171,14 +171,17 @@ const getBirdieRuns = (round: Round): BirdieRun[] => {
     }
   })
 
-  console.log('scores: ', scores)
-  console.log('trimmedScores: ', trimmedScores)
-  console.log('rawStreaks: ', rawStreaks)
-  console.log('streaks: ', streaks)
-  console.log('potentialRuns: ', potentialRuns)
-  console.log('outputs: ', outputs)
+  const birdieRuns: BirdieRun[] = outputs.map(({ start, end, ...rest }) => ({
+    round,
+    start,
+    end,
+    ...rest,
+    run: scores.slice(start - 1, end).map(({ birdie }) => birdie),
+  }))
 
-  return []
+  console.log('birdieRuns: ', birdieRuns)
+
+  return birdieRuns
 }
 
 export default getBirdieRuns

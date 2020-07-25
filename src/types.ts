@@ -44,7 +44,7 @@ export interface BirdieRun {
   holes: number
   start: number
   end: number
-  run: number[]
+  run: boolean[]
 }
 
 export interface Streak {
