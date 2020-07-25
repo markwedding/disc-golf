@@ -118,7 +118,7 @@ const birdieRunsSelector = selector({
 
     if (rounds.length) {
       // TODO: remove
-      const birdieRuns = getBirdieRuns(rounds[9])
+      const birdieRuns = getBirdieRuns(rounds[1])
 
       console.log('BIRDIE RUNS: ', birdieRuns)
 
