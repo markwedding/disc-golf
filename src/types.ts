@@ -53,3 +53,5 @@ export interface Streak {
 }
 
 export type PotentialRun = Omit<BirdieRun, 'round' | 'run'>
+// Run exists for semantic reasons
+export type Run = PotentialRun

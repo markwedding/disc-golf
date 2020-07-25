@@ -1,3 +1,5 @@
+import getBirdieRuns from './getBirdieRuns'
+
 const formatToPar = (toPar: number): string => {
   if (toPar === 0) return 'E'
   if (toPar > 0) return `+${toPar}`
@@ -18,4 +20,4 @@ const formatDate = (date: Date) =>
     year: 'numeric',
   })
 
-export { formatToPar, formatAverageToPar, formatDate }
+export { formatToPar, formatAverageToPar, formatDate, getBirdieRuns }

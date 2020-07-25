@@ -116,7 +116,7 @@ const birdieRunsSelector = selector({
   get: ({ get }) => {
     const rounds = get(filteredRoundsSelector)
 
-    if (rounds.length) return getBirdieRuns(rounds[1])
+    if (rounds.length) return getBirdieRuns(rounds[9])
 
     return []
   },
