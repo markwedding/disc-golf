@@ -12,7 +12,6 @@ const Dashboard: FC = () => (
     <Divider my={5} />
     <PlayerStats />
     <Divider my={5} />
-    {/* TODO: figure out why Stack doesn't work here? */}
     <Stack isInline spacing={5}>
       <SortedRounds />
       <BirdieRuns />

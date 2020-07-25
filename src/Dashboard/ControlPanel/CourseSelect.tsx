@@ -8,7 +8,6 @@ import Multiselect from 'src/components/Multiselect'
 
 const { useRecoilValue, useRecoilState } = recoil
 
-// TODO: make this more readible
 const generateOptions = (courses: Courses) =>
   Object.entries(courses)
     .reduce<[string, string][]>(
@@ -41,7 +40,6 @@ const CourseSelect: FC = () => {
         isMulti
         hideSelectedOptions
         onChange={(value) => {
-          // TODO: clean up assertions
           const options = value || ([] as any)
 
           setSelectedCourses(options.map((option: any) => option.value))
