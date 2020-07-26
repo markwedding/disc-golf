@@ -2,7 +2,7 @@ import React from 'react'
 import type { FC } from 'react'
 import recoil from 'recoil'
 import { Text } from '@chakra-ui/core'
-import { playerStatsSelector } from 'src/state'
+import { playerStatsSelector } from 'src/selectors'
 import { formatAverageToPar, formatToPar } from 'src/utils'
 
 const { useRecoilValue } = recoil
