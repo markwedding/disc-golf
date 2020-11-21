@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react'
 import type { FC } from 'react'
 import recoil from 'recoil'
-import { coursesSelector, selectedCoursesAtom } from 'src/state'
 import type { Courses } from 'src/types'
 import { FormControl, FormLabel } from '@chakra-ui/core'
 import Multiselect from 'src/components/Multiselect'
+import { coursesSelector } from 'src/selectors'
+import { selectedCoursesAtom } from 'src/atoms'
 
 const { useRecoilValue, useRecoilState } = recoil
 

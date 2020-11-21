@@ -2,7 +2,8 @@ import React, { ChangeEvent, useEffect } from 'react'
 import type { FC } from 'react'
 import { FormControl, FormLabel, Select } from '@chakra-ui/core'
 import recoil from 'recoil'
-import { playerAtom, playersSelector } from 'src/state'
+import { playerAtom } from 'src/atoms'
+import { playersSelector } from 'src/selectors'
 
 const { useRecoilState, useRecoilValue } = recoil
 

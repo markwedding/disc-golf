@@ -1,7 +1,6 @@
 import React from 'react'
 import type { FC } from 'react'
 import recoil from 'recoil'
-import { sortedRoundsSelector, roundSortAtom } from 'src/state'
 import {
   Heading,
   Box,
@@ -14,6 +13,8 @@ import {
 } from '@chakra-ui/core'
 import { formatToPar, formatDate } from 'src/utils'
 import { FaCaretUp, FaCaretDown } from 'react-icons/fa'
+import { roundSortAtom } from 'src/atoms'
+import { sortedRoundsSelector } from 'src/selectors'
 
 const { useRecoilValue, useRecoilState } = recoil
 

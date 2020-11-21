@@ -2,7 +2,7 @@ import React from 'react'
 import type { FC } from 'react'
 import recoil from 'recoil'
 import { Box } from '@chakra-ui/core'
-import { birdieRunsSelector } from 'src/state'
+import { birdieRunsSelector } from 'src/selectors'
 
 const { useRecoilValue } = recoil
 
