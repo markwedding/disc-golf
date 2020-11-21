@@ -1,6 +1,6 @@
 import recoil from 'recoil'
 import { getBirdieRuns } from 'src/utils'
-import { filteredRoundsSelector } from '.'
+import filteredRoundsSelector from './filteredRoundsSelector'
 
 const { selector } = recoil
 

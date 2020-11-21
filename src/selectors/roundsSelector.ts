@@ -1,6 +1,6 @@
 import recoil from 'recoil'
 import { playerAtom } from 'src/atoms'
-import { roundsQuery } from '.'
+import roundsQuery from './roundsQuery'
 
 const { selector } = recoil
 

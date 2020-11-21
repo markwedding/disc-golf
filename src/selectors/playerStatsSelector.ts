@@ -1,7 +1,7 @@
 import { mean, min } from 'lodash-es'
 import recoil from 'recoil'
 import type { PlayerStats } from 'src/types'
-import { filteredRoundsSelector } from '.'
+import filteredRoundsSelector from './filteredRoundsSelector'
 
 const { selector } = recoil
 

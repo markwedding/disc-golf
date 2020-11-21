@@ -4,7 +4,7 @@ import { Box, Divider, Stack } from '@chakra-ui/core'
 import ControlPanel from './ControlPanel'
 import PlayerStats from './PlayerStats'
 import SortedRounds from './SortedRounds'
-import BirdieRuns from './BirdieRuns'
+// import BirdieRuns from './BirdieRuns'
 
 const Dashboard: FC = () => (
   <Box m={5}>
@@ -14,7 +14,7 @@ const Dashboard: FC = () => (
     <Divider my={5} />
     <Stack isInline spacing={5}>
       <SortedRounds />
-      <BirdieRuns />
+      {/* <BirdieRuns /> */}
     </Stack>
   </Box>
 )

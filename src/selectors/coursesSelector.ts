@@ -1,7 +1,7 @@
 import { sortBy } from 'lodash-es'
 import recoil from 'recoil'
 import type { Courses } from 'src/types'
-import { roundsSelector } from '.'
+import roundsSelector from './roundsSelector'
 
 const { selector } = recoil
 

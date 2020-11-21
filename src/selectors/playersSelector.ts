@@ -1,5 +1,5 @@
 import recoil from 'recoil'
-import { roundsQuery } from '.'
+import roundsQuery from './roundsQuery'
 
 const { selector } = recoil
 
